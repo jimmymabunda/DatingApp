@@ -25,4 +25,5 @@ resolve(route: ActivatedRouteSnapshot): Observable<User> {
     );
 
 }
+
 }

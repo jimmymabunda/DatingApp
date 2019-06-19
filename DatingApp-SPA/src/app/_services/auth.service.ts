@@ -4,6 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
+import { User } from '../_models/user';
 
 
 @Injectable({
@@ -14,6 +15,9 @@ export class AuthService {
 
 jwtHelper = new JwtHelperService();
 decodedToken: any;
+currentUser: User;
+// photoUrl = new BehaviorSubject<string>('../../assets/user.png');
+
 
 
 constructor(private http: HttpClient) { }
