@@ -33,7 +33,10 @@ model: any = {};
   }
 
   logout() {
+    localStorage.removeItem('user');
     localStorage.removeItem('token');
+    this.authService.decodedToken = null;
+    this.authService.currentUser = null;
     this.alertify.message('logged out');
     this.router.navigate(['/home']);
   }

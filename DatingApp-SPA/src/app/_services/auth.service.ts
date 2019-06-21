@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient , HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
@@ -16,6 +15,7 @@ export class AuthService {
 jwtHelper = new JwtHelperService();
 decodedToken: any;
 currentUser: User;
+
 // photoUrl = new BehaviorSubject<string>('../../assets/user.png');
 
 
@@ -32,7 +32,9 @@ login(model: any)
       const user = response;
       if ( user) {
         localStorage.setItem('token', user.token);
+        localStorage.setItem('user', JSON.stringify(user.user));
         this.decodedToken = this.jwtHelper.decodeToken(user.token);
+        this.currentUser = user.user;
         console.log(this.decodedToken);
       }
     })
